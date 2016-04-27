@@ -1,0 +1,5 @@
+http://jqueryvalidation.org/documentation/
+
+http://osvaldas.info/elegant-css-and-jquery-tooltip-responsive-mobile-friendly
+
+popover forsvinner: http://stackoverflow.com/questions/12819847/jquery-mobile-popup-immediately-hides-after-showing

@@ -1,0 +1,15 @@
+
+
+
+Todos:
+
+-Lage infotekst til Google Play og App Store (S-O)
+
+-Sette inn tekst for fyringstips osv under flammen (S-O)
+
+-Legge til config.xml for å spesifisere plugins og tilganger på telefonen osv. (S-O)
+
+------------------------------------------
+build.phonegap.com:
+brukernavn: kontakt@elpred.no
+passord: r81vedappen

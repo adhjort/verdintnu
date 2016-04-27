@@ -1,0 +1,1 @@
+Vedapp utviklet av Elpred for Norsk institutt for skog og landskap

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vedapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/customstyle.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+
+    <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css"> 
+ 
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container" style="margin-bottom: 35px;">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tree">
+                    <form id="woodForm" method="get" action="">
+                    <div class="input-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 colheading">
+                                <div class="heading1">VED
+									<span id="wood_calculator_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#wood_calculator_information_modal" style="color: rgb(192, 57, 43); margin-right: -25px;"></span>
+								</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                                <div class="col-xs-6 col-sm-6">
+                                    <h6>FUKTIGHET</h6>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                        <input type="number" step="0.01" id="moisture" name="moisture" class="form-control" onclick="this.value='';" onfocus="this.value=''; this.select();" onblur="this.value=!this.value?'20':this.value;" value="20">                           
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <div class="enhet"><p>%</p></div>
+                                </div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="moisture_information" class="glyphicon glyphicon-question-sign" href="#" data-toggle="modal" data-target="#moisture_information_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                                <div class="col-xs-6 col-sm-6"><h6>VEKT</h6></div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                        <input type="number" step="0.01" id="weight" name="weight" class="form-control"  onclick="this.value='';" onfocus="this.value=''; this.select();" onblur="this.value=!this.value?'0':this.value;" value="0">  
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1"><div class="enhet"><p>kg</p></div></div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="weight_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#weight_information_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                                <div class="col-xs-6 col-sm-6">
+                                    <h6>VEDPRIS</h6>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                            <input type="number" step="0.01" id="price" name="price" class="form-control" onclick="this.value='';" onfocus="this.value=''; this.select();" onblur="this.value=!this.value?'0':this.value;" value="0">                             
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1"><div class="enhet"><p>kr</p></div></div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="price_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#price_information_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                                <div class="col-xs-6 col-sm-6"><h6 style="line-height: 0.9em;">VIRKNINGSGRAD</h6></div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                            <input type="number" step="0.01" id="efficiency" name="efficiency" class="form-control" onclick="this.value='';" onfocus="this.value=''; this.select();" onblur="this.value=!this.value?'75':this.value;" value="75">                           
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1"><div class="enhet"><p>%</p></div></div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="efficiency_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#efficiency_information_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row" style="text-align: center; cursor: none;">
+                        <input type="text" id="hideKeyboard" style="opacity:0; width: 0px; color: #2C2D2F; cursor:none; text-indent: -20em; font-size: 0px;" onfocus="javascript:$('#hideKeyboard').blur();"> 
+                    </div>-->
+                    <div class="row" style="text-align: center;">
+                          <button type="submit" id="submit2" class="btn btn-default" style="line-height: 1em; margin-top: 5px; font-size: 26px; width: 135px; 
+    " onclick="document.getElementById('submit2').blur()"><span class="glyphicon glyphicon-tree-conifer" style="color: white"></span></button>
+                    </div>
+						<div class="row" style="text-align: center; margin-bottom: -18px">
+                            <div id="energyAmountHeading" class="resultheading" style="font-size: 13px; line-height: 3.9em;"></div> <div id="energyAmountResult" class="resultheading" style="font-size: 15px; display: inline; "></div><div id="energyAmountUnit" class="resultheading" style="font-size: 13px; display: inline;"></div>
+                        </div>
+                        <div class="row" style="text-align: center; margin-bottom: 3px;">
+                            <div id="woodCalculationHeading" class="resultheading" style="font-size: 13px; line-height: 3.9em;"></div> <div id="woodCalculationResult" class="resultheading" style="font-size: 15px; display: inline; "></div><div id="woodCalculationUnit" class="resultheading" style="font-size: 13px; display: inline;"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="flash">
+                    <!--form id="electricityForm" method="get" action=""-->
+                    <!--div class="input-group"-->
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-border">
+                            <div class="heading">STRØM/<br>VIRKNINGSGRAD
+                            		<!--span id="electricity_calculator_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#electricity_calculator_information_modal"></span-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="infotext">
+                        Vedkalkulatoren regner ut energimengde og pris i øre per kilowattime med en virkningsgrad på ovnen på 75 % som standardinnstilling. Denne prisen er sammenlignbar med kostnaden for strøm ved bruk av panelovner. 
+                        </p>
+                        <br>
+                        <p class="infotext">
+                        Vedovner med ny teknologi har høyere virkningsgrad enn ovner med gammel teknologi.  En lukket ovn med gammel teknologi har en virkningsgrad på 50 %, og en åpen peis har en virkningsgrad på 15 %. 
+                        </p>
+                    </div>
+						
+						
+						
+						
+                        <!-- <div class="row">  
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            
+                                <div class="col-xs-6 col-sm-6">
+                                    <h6>VEDFUKTIGHET</h6>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                        <input type="text" id="moisture_2" name="moisture_2" class="form-control" value="20" onfocus="document.getElementById('moisture_2').select();" onblur="if(this.value == ''){this.value = '20';}">     
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <div class="enhet"><p>%</p></div>
+                                </div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="moisture_information_2" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#moisture_information_2_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            
+                                <div class="col-xs-6 col-sm-6"><h6 style="line-height: 0.9em;">VIRKNINGSGRAD OVN</h6></div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                            <input type="text" id="efficiency_2" name="efficiency_2" class="form-control" value="75" onfocus="document.getElementById('efficiency_2').select();" onblur="if(this.value == ''){this.value = '75';}">                             
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1"><div class="enhet"><p>%</p></div></div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="efficiency_information_2" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#efficiency_information_2_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            
+                                <div class="col-xs-6 col-sm-6"><h6>STRØMPRIS</h6></div>
+                                <div class="col-xs-3 col-sm-3 input text-center">
+                                    <h5>
+                                        <input type="text" id="electricityPrice" name="electricityPrice" class="form-control" placeholder="0" onfocus="document.getElementById('electricityPrice').select();"> 
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1" style="heigth: 58px;"><div class="enhet"><p style="font-size: 11px; line-height: 0.8em; margin-top: 24px;">øre/kWh</p></div>
+                                </div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="electricity_price_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#electricity_price_information_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border">
+                            
+                                <div class="col-xs-6 col-sm-6">
+                                    <h6>SPAREBELØP</h6>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 input">
+                                    <h5>
+                                        <input type="text" id="saveAmount" name="saveAmount" class="form-control" placeholder="0" onclick="document.getElementById('saveAmount').select();">                          
+                                    </h5>
+                                </div>
+                                <div class="col-xs-1 col-sm-1"><div class="enhet"><p>kr</p></div></div>
+                                <div class="col-xs-1 col-sm-1">
+                                    <span id="saveamount_information" class="glyphicon glyphicon-question-sign" data-toggle="modal" data-target="#saveamount_information_modal"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: center; cursor: none;">
+                        <button type="submit" id="submit" class="btn btn-default" style="line-height: 1em; margin-top: 10px; font-size: 26px;" onclick="document.getElementById('submit').blur()"><span class="glyphicon glyphicon-flash"></span>Regn ut</button>
+                    </div>
+                    </form>
+                        <div class="row" style="text-align: center; margin-bottom: 5px;">
+                            <div id="electricityCalculationHeading" class="resultheading" style="font-size: 10px; line-height: 3.9em;"></div> <div id="electricityCalculationResult" class="resultheading" style="font-size: 28px; display: inline; "></div><div id="electricityCalculationUnit" class="resultheading" style="font-size: 15px; display: inline;"></div>
+                        </div> -->
+						
+						
+                </div>
+                <div class="tab-pane" id="fire">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-border">
+                            <div class="heading">FYRINGSTIPS</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p class="infotext">
+                                Brennverdi for absolutt tørr ved (0 % fuktighet) er 5,3 kWh per kg uavhengig av treslag. Brennverdien for fyringsved omkring 20 % fuktighet er 4,3 kWh/kg. Det vil alltid gå med noe energi til å fordampe vannet i veden. Fyringsved rundt 30 % fuktighet vil være vanskelig å tenne, avgir lite varme og soter ovnen.
+                            </p>
+                            <br>
+                            <p class="infotext">
+                                Bjørkenever har høyere brennverdi (8,5 kWh/kg). Bjørkenever brukes gjerne ved opptenning. Legg to kubber mot hverandre i bunnen av brennkammeret. Legg papir, opptenningsbriketter, flis, eller never på toppen av kubbene. Plasser deretter en til to kubber på tvers av kubbene i bunn og tenn opp.  Når ovnen er varm fyres ovnen med en til to kubber per gang. Normal fyring krever 1,5 kg ved per time.                           
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="info">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align: center; margin-top:10px; padding-bottom: -10px">
+                                <div class="visible-xs">
+                                    <img src="images/skogoglandskapmobil.png" class="img-rounded img-responsive inline" alt="Skog og Landskap">
+                                </div>
+                                <div class="visible-sm">
+                                    <img src="images/skogoglandskapliten.png" class="img-rounded img-responsive inline" alt="Skog og Landskap">
+                                </div>
+                                <div class="visible-md">
+                                    <img src="images/skogoglandskapmedium.png" class="img-rounded img-responsive inline" alt="Skog og Landskap">
+                                </div>
+                                <div class="visible-lg">
+                                    <img src="images/skogoglandskapmedium.png" class="img-rounded img-responsive inline" alt="Skog og Landskap">
+                                </div>
+                             
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p class="infotext">
+					Denne vedkalkulatoren er utgitt av Norsk Institutt for Skog og Landskap.
+					</p>
+					<br>
+					<p class="infotext">
+					Vedkalkulatoren er et verktøy for å finne energimengde og prisen på fyringsved. Kjenner en vekt og fuktighet på en leveranse eller sekk med fyringsved, kan en beregne energimengden. Vedens fuktighet (i prosent) måles med en fuktighetsmåler hvis den ikke står oppgitt på vedleveransen.
+					</p>
+					<br>
+					<p class="infotext">
+					I prosjektet «Omsetning av fyringsved» har Skog og Landskap vært utøvende part og samarbeidet med:
+					<a href="#" onclick="openWebPage('http://www.norskved.no');">Norsk Ved</a> (prosjektansvarlig),
+					<a href="#" onclick="openWebPage('http://www.norskvarme.org');">Norsk Varme</a>,
+					<a href="#" onclick="openWebPage('http://www.innovasjonnorge.no');">Innovasjon Norge</a>,
+					<a href="#" onclick="openWebPage('http://www.enova.no');">Enova</a> og 
+					<a href="#" onclick="openWebPage('http://www.skogtiltaksfondet.no');">Skogtiltaksfondet</a>
+					for finansiering og utvikling av vedkalkulatoren.
+					</p>
+					<br>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p class="elpred">
+                    Appen er utviklet av <a href="#" onclick="openWebPage('http://www.elpred.no');">ElPred</a>
+                    </p>
+                    <p class="elpred">
+                    Versjon 1.0
+                    </p>
+                    <p class="elpred2" style="font-size: 18px;">
+                        <a href="#" onclick="openWebPage('http://www.skogoglandskap.no');">www.skogoglandskap.no</a>
+                    </p>
+
+                    </div>
+                    </div>
+                </div>
+            </div> <!-- tab-content -->
+    </div> <!-- /container -->
+    <nav class="navbar navbar-fixed-bottom" role="navigation" style="position:fixed">
+            <div data-role="footer" data-position="fixed" data-tap-toggle="true">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <a class="btn btn-menu btn-primary active" href="#tree" data-toggle="tab" onclick="$('a.btn-menu').removeClass('active');$(this).addClass('active');"><span class="glyphicon glyphicon-tree-conifer"></span> </a>
+                        <a class="btn btn-menu btn-primary" href="#flash" data-toggle="tab" onclick="$('a.btn-menu').removeClass('active');$(this).addClass('active');"><span class="glyphicon glyphicon-flash"></span> </a>
+                        <a class="btn btn-menu btn-primary" href="#fire" data-toggle="tab" onclick="$('a.btn-menu').removeClass('active');$(this).addClass('active');"><span class="glyphicon glyphicon-fire"></span> </a>
+                        <a class="btn btn-menu btn-primary" href="#info" data-toggle="tab" onclick="$('a.btn-menu').removeClass('active');$(this).addClass('active');"> <span class="glyphicon glyphicon-info-sign"></span></a> 
+                    </div>   
+                </div>
+            </div>
+        </nav>
+    <div class="modal" id="moisture_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Fuktighet</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            Fuktighet oppgis som prosent av tørrvekt. Håndholdte fuktighetsmålere måler fuktighet i prosent av tørrvekt. Fyringsklar ved bør ha en gjennomsnittlig fuktighet mindre enn 22 %.
+			</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal" id="weight_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Vekt</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            Oppgi vedens vekt i kg.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal" id="price_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Vedpris</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            Oppgi hvor mye du betalte for det totale antall kg ved du kjøpte i kr.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal" id="efficiency_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Virkningsgrad</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            En rentbrennende ovn har ca. 75 % virkningsgrad.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal" id="electricity_price_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Strømpris</h5>
+          </div>
+          <div class="modal-body">
+            <p>Oppgi prisen du betaler for strøm (husk også nettleie).</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal" id="saveamount_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Sparebeløp</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            Oppgi beløpet som du ønsker å spare i strømutgifter.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal" id="moisture_information_2_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Fuktighet</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            Fuktighet oppgis som prosent av tørrvekt. Håndholdte fuktighetsmålere måler fuktighet i prosent av tørrvekt. Fyringsklar ved bør ha en gjennomsnittlig fuktighet mindre enn 22%.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal" id="efficiency_information_2_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">Virkningsgrad</h5>
+          </div>
+          <div class="modal-body">
+            <p>
+            En rentbrennende ovn har ca. 75 % virkningsgrad.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+	
+	<div class="modal" id="wood_calculator_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+        <h5 class="modal-title" id="myModalLabel">Vedkalkulator</h5>
+      </div>
+      <div class="modal-body">
+        <p>
+        Vedkalkulatoren regner ut energimengde basert på vekt og fuktighet for fyringsveden. Pris delt på energimengde gir prisen i øre per kilowattime (øre/kWh).
+		</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div>
+<div class="modal" id="electricity_calculator_information_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size: 55px;">&times;</button>
+        <h5 class="modal-title" id="myModalLabel">Strøm/virkningsgrad</h5>
+      </div>
+      <div class="modal-body">
+        <p>
+        Strømkalkulatoren hjelper deg å finne ut hvor mye ved du må kjøpe for å erstatte strømfyring. Basert på ønsket beløp du vil spare av strøm og hvor mye du betaler for strømmen
+		regner kalkulatoren ut energimengden. Så bruker den en formel basert på vedens vekt og fuktprosent for å regne ut hvor mye ved du må bruke i stedet for å få samme energimengde. 
+		</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+
+
+    </div>
+    <!--</nav>-->
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/libraries/jquery-1.10.2.min.js"></script>
+    <script src="js/libraries/bootstrap.min.js"></script>
+    <script src="js/libraries/jmobile.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/libraries/jquery.validate.js"></script>
+	<script src="js/libraries/fastclick.js"></script>
+    <script src="js/application/main.js"></script>
+    <script src="js/libraries/jquery.stacktable.js"></script>
+    <script src="js/libraries/application.js"></script>
+    <script src="js/libraries/jquery.form.js"></script>
+    <script src="js/libraries/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/libraries/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/libraries/bootstrap-select.js"></script>
+    <script src="js/libraries/bootstrap-switch.js"></script>
+    <script src="js/libraries/jquery.tagsinput.js"></script>
+    <script src="js/libraries/jquery.mockjax.js"></script>
+
+    
+  </body>
+</html>
