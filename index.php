@@ -16,32 +16,9 @@ include 'loggedincheck.php';
 	<!-- Le styles -->
 
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
-
 	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-	<style type="text/css">
-	.center{
-	text-align: center;
-	}
-	div#SEB.alert-success{
-	background-color: RGB(104,204,39);
-	text-color: white !important;
-	}
-	div#SEB.alert-success p{
-	color: white;
-	text-shadow: none;
-	}
-	div#SEB.alert-success b{
-	color: white;
-	}
-	div#SEB.alert-success .center{
-	text-align: center;
-	}
-	.nyhetsbrev p{
-	color: black;
-	}
-	</style>
 	<link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/index.css" rel="stylesheet">
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>

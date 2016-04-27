@@ -1,0 +1,20 @@
+.center{
+    text-align: center;
+}
+div#SEB.alert-success{
+    background-color: RGB(104,204,39);
+    text-color: white !important;
+}
+div#SEB.alert-success p{
+    color: white;
+    text-shadow: none;
+}
+div#SEB.alert-success b{
+    color: white;
+}
+div#SEB.alert-success .center{
+    text-align: center;
+}
+.nyhetsbrev p{
+    color: black;
+}
